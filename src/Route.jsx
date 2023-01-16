@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { AccountBlock } from "./components/account/AccountBlock";
 import ChatHistoryPage from "./pages/ChathistoryPage";
 import ChatPage from "./pages/ChatPage";
 import FirstPage from "./pages/FirstPage";
@@ -33,16 +34,18 @@ const RouteInfo = () => {
           <Route path="*" element={<NotfountPage />} />
         </Routes>
       ) : (
-        <Routes>
-          <Route path="/" element={<FirstPage />} />
-          <Route path="/account/login" element={<LoginPage />} />
-          <Route path="/account/signup" element={<SignupPage />} />
-          <Route
-            path="/account/profilesetting"
-            element={<FirstProfilePage />}
-          />
-          <Route path="*" element={<NotfountPage />} />
-        </Routes>
+        <AccountBlock>
+          <Routes>
+            <Route path="/" element={<FirstPage />} />
+            <Route path="/account/login" element={<LoginPage />} />
+            <Route path="/account/signup" element={<SignupPage />} />
+            <Route
+              path="/account/profilesetting"
+              element={<FirstProfilePage />}
+            />
+            <Route path="*" element={<NotfountPage />} />
+          </Routes>
+        </AccountBlock>
       )}
     </>
   );
