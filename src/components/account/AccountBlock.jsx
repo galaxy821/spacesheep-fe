@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled, { keyframes } from "styled-components";
-// import { motion } from "framer-motion";
 
 const gradient = keyframes`
   /* from {
@@ -24,9 +23,10 @@ export const AccountBlock = styled.div`
   position: absolute;
   height: 100%;
   width: 100%;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background: linear-gradient(-45deg, #b39d3d, #5f9ebd, #5872c2, #60488b);
   background-size: 600% 600%;
-  animation: ${gradient} 5s linear infinite;
+  animation: ${gradient} 20s ease-in-out infinite;
+  overflow: hidden;
 `;
 
 // export const AccountBlock = () => {
@@ -50,6 +50,18 @@ export const AccountPageContainer = ({ children }) => {
   return (
     <AccountBlock>
       <AccountContentBlock>{children}</AccountContentBlock>
+      <ul class="background">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
     </AccountBlock>
   );
 };

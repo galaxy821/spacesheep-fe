@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
-import { Input, TextField } from "@mui/material";
+import { motion } from "framer-motion";
+// import { Input, TextField } from "@mui/material";
 import * as React from "react";
 
-const LoginInputBlock = styled.div``;
+const LoginInputBlock = styled(motion.div)``;
 
-const LoginInputLabel = styled.label``;
+const LoginInputLabel = styled(motion.label)``;
 
-const LoginInput = styled.input`
+const LoginInput = styled(motion.input)`
   width: 240px;
   height: 48px;
   border-bottom: none;
@@ -26,11 +27,42 @@ const LoginInput = styled.input`
   }
 `;
 
+const loginInputAnimation = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  transition: { delay: 5, duration: 0.5 },
+};
+
 export const InputForAccount = ({ type }) => {
   return (
-    <LoginInputBlock>
-      <LoginInputLabel>{type}</LoginInputLabel>
-      <LoginInput type={type} name={type} />
+    <LoginInputBlock
+      variants={loginInputAnimation}
+      initial="initial"
+      animate="animate"
+      transition={{
+        delay: 0.5,
+      }}
+    >
+      <LoginInputLabel
+        variants={loginInputAnimation}
+        initial="initial"
+        animate="animate"
+        transition={{
+          delay: 0.5,
+        }}
+      >
+        {type}
+      </LoginInputLabel>
+      <LoginInput
+        type={type}
+        name={type}
+        variants={loginInputAnimation}
+        initial="initial"
+        animate="animate"
+        transition={{
+          delay: 0.5,
+        }}
+      />
     </LoginInputBlock>
   );
 };

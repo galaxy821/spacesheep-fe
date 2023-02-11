@@ -3,8 +3,9 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import { useLocation, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
-const PrimaryButtonForAccount = styled(Button)`
+const PrimaryButtonForAccount = styled(motion.button)`
   width: 240px;
   height: 48px;
   border-radius: 20px;
@@ -24,7 +25,7 @@ const PrimaryButtonForAccount = styled(Button)`
   box-shadow: #000000 2px 2px 2px;
 `;
 
-const SecondaryButtonForAccount = styled(Button)`
+const SecondaryButtonForAccount = styled(motion.button)`
   width: 240px;
   height: 48px;
   border-radius: 20px;
@@ -44,7 +45,13 @@ const SecondaryButtonForAccount = styled(Button)`
   box-shadow: #000000 2px 2px 2px;
 `;
 
-export const ButtonForAccount = ({ primary, children }) => {
+const loginButtonAnimation = {
+  initial: { y: "-59px" },
+  animate: { y: "0px" },
+  transition: { duration: 0.5 },
+};
+
+export const ButtonForAccount = ({ primary, buttonAnimated, children }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -70,11 +77,26 @@ export const ButtonForAccount = ({ primary, children }) => {
     }
   };
   if (primary) {
-    return (
-      <PrimaryButtonForAccount id="primary" onClick={toLink}>
-        {children}
-      </PrimaryButtonForAccount>
-    );
+    if (buttonAnimated) {
+      return (
+        <PrimaryButtonForAccount
+          id="primary"
+          onClick={toLink}
+          variants={loginButtonAnimation}
+          initial="initial"
+          animate="animate"
+          transition="transition"
+        >
+          {children}
+        </PrimaryButtonForAccount>
+      );
+    } else {
+      return (
+        <PrimaryButtonForAccount id="primary" onClick={toLink}>
+          {children}
+        </PrimaryButtonForAccount>
+      );
+    }
   } else {
     return (
       <SecondaryButtonForAccount id="secondary" onClick={toLink}>
